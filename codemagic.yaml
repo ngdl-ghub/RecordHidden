@@ -24,4 +24,5 @@ workflows:
             -f net10.0-ios
 
     artifacts:
-      - **/bin/Debug/net10.0-ios/**/*.app
+        - "**/bin/Debug/net10.0-ios/**/*.app"
+
