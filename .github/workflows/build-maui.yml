@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - master
-
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
   build-ios:
@@ -18,33 +19,35 @@ jobs:
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 8.0.100
 
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: 16.4
 
-      # Cache NuGet packages
       - name: Cache NuGet
         uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Install MAUI workloads
-        run: dotnet workload install maui maui-ios
+      - name: Install MAUI iOS workload (version 8.0.100)
+        run: dotnet workload install maui-ios --version 8.0.100
+
+      - name: Clean project
+        run: dotnet clean RecordHidden.csproj
 
       - name: Restore NuGet packages
         run: dotnet restore RecordHidden.csproj
 
       - name: Build MAUI iOS app
-        run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios -v diag
+        run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -v diag
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-app
-          path: "**/bin/Release/net8.0-ios/**/*.app"
+          path: "**/bin/Release/net8.0-ios16.0/**/*.app"

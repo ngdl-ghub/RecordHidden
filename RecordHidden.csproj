@@ -21,7 +21,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TargetFramework>net8.0-ios</TargetFramework>
+		<TargetFramework>net8.0-ios16.0</TargetFramework>
 		<NoWarn>NETSDK1202</NoWarn>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
@@ -36,7 +36,6 @@
 		<WindowsPackageType>None</WindowsPackageType>
 
 		<!-- iOS -->
-		<TargetPlatformVersion>16.0</TargetPlatformVersion>
 		<SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
