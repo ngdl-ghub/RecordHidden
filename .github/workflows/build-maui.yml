@@ -19,12 +19,12 @@ jobs:
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x   # cài SDK .NET 8 ổn định
+          dotnet-version: 8.0.x
 
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: 16.4     # runner có iOS SDK 16.x
+          xcode-version: 16.4
 
       - name: Install MAUI iOS workload
         run: dotnet workload install maui-ios
@@ -35,18 +35,12 @@ jobs:
       - name: Restore NuGet packages
         run: dotnet restore RecordHidden.csproj
 
-      # Dump toàn bộ property sau khi MSBuild xử lý
-      - name: Dump MSBuild properties
-        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -pp:props.txt
+      # In trực tiếp property ra log
+      - name: Show TargetPlatformVersion
+        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -v:diag | grep TargetPlatformVersion
 
-      - name: Check props.txt exists
-        run: ls -l props.txt || echo "props.txt not found"
-
-      - name: Upload MSBuild props
-        uses: actions/upload-artifact@v4
-        with:
-          name: msbuild-props
-          path: props.txt
+      - name: Show SupportedOSPlatformVersion
+        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -v:diag | grep SupportedOSPlatformVersion
 
       - name: Build MAUI iOS app
         run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -p:TreatWarningsAsErrors=false
