@@ -37,10 +37,10 @@ jobs:
 
       # In trực tiếp property ra log
       - name: Show TargetPlatformVersion
-        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -v:diag | grep TargetPlatformVersion
+        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -v:diag | grep -i "TargetPlatformVersion"
 
       - name: Show SupportedOSPlatformVersion
-        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -v:diag | grep SupportedOSPlatformVersion
+        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -v:diag | grep -i "SupportedOSPlatformVersion"
 
       - name: Build MAUI iOS app
         run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -p:TreatWarningsAsErrors=false
