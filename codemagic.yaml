@@ -6,13 +6,16 @@ workflows:
 
     environment:
       vars:
-        SOLUTION_FILE: "RecordHidden.slnx"   # dùng file .slnx của bạn
+        SOLUTION_FILE: "RecordHidden.slnx"   # file solution của bạn
         PROJECT_NAME: "RecordHidden"         # tên project MAUI
       xcode: latest
       cocoapods: default
-      dotnet: 10.0.100   # phiên bản .NET 10.0 SDK
 
     scripts:
+      - name: Install .NET SDK
+        script: |
+          brew install dotnet-sdk
+
       - name: Restore NuGet packages
         script: |
           dotnet restore "$SOLUTION_FILE"
@@ -24,5 +27,4 @@ workflows:
             -f net10.0-ios
 
     artifacts:
-        - "**/bin/Debug/net10.0-ios/**/*.app"
-
+      - "**/bin/Debug/net10.0-ios/**/*.app"
