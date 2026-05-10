@@ -6,8 +6,8 @@ workflows:
 
     environment:
       vars:
-        SOLUTION_FILE: "RecordHidden.slnx"   # file solution của bạn
-        PROJECT_NAME: "RecordHidden"         # tên project MAUI
+        SOLUTION_FILE: "RecordHidden.slnx"
+        PROJECT_NAME: "RecordHidden"
       xcode: latest
       cocoapods: default
 
