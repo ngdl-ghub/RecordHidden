@@ -21,8 +21,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TargetFramework>net8.0-ios</TargetFramework>
-		<NoWarn>NETSDK1202</NoWarn>
+		<TargetFramework>net8.0-ios16.0</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -36,8 +35,13 @@
 		<WindowsPackageType>None</WindowsPackageType>
 
 		<!-- iOS -->
+		<TargetPlatformIdentifier>ios</TargetPlatformIdentifier>
 		<TargetPlatformVersion>16.0</TargetPlatformVersion>
 		<SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
+
+		<!-- Tắt cảnh báo EOL -->
+		<NoWarn>NETSDK1202</NoWarn>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>

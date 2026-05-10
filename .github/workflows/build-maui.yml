@@ -36,7 +36,7 @@ jobs:
         run: dotnet restore RecordHidden.csproj
 
       - name: Build MAUI iOS app
-        run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -v diag -p:TreatWarningsAsErrors=false
+        run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -p:TreatWarningsAsErrors=false
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
