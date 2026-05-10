@@ -24,6 +24,7 @@
 	<!-- Nếu build trên macOS/Linux (GitHub Actions runner) thì dùng net8.0-ios -->
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
 		<TargetFrameworks>net8.0-ios;net9.0-windows10.0.19041.0</TargetFrameworks>
+		<NoWarn>NETSDK1202</NoWarn>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
