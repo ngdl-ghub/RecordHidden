@@ -39,6 +39,9 @@ jobs:
       - name: Dump MSBuild properties
         run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -pp:props.txt
 
+      - name: Check props.txt exists
+        run: ls -l props.txt || echo "props.txt not found"
+
       - name: Upload MSBuild props
         uses: actions/upload-artifact@v4
         with:
