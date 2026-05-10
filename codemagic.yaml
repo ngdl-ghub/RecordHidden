@@ -6,14 +6,15 @@ workflows:
 
     environment:
       vars:
-        BUNDLE_ID: "com.vnc.recorderhidden"
-        XCODE_WORKSPACE: "RecorderHidden.xcworkspace"
-        XCODE_SCHEME: "RecorderHidden"
+        BUNDLE_ID: "com.yourcompany.yourapp"
+        XCODE_WORKSPACE: "YourApp.xcworkspace"
+        XCODE_SCHEME: "YourApp"
       xcode: latest
       cocoapods: default
+      flutter: stable   # đảm bảo Codemagic cài Flutter
 
     scripts:
-      - name: Get Flutter packages (nếu dùng Flutter)
+      - name: Get Flutter packages
         script: |
           flutter pub get
 
