@@ -72,7 +72,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include=".github\workdflows\" />
+	  <None Include=".github\workflows\test.yml" />
 	</ItemGroup>
 
 </Project>
