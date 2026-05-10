@@ -20,9 +20,9 @@
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
-	<!-- iOS -->
+	<!-- macOS/iOS build -->
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TargetFramework>net8.0-ios</TargetFramework>
+		<TargetFramework>net8.0-ios15.0</TargetFramework>
 		<NoWarn>NETSDK1202</NoWarn>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
@@ -36,7 +36,7 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 		<WindowsPackageType>None</WindowsPackageType>
-		<TargetPlatformVersion>15.0</TargetPlatformVersion>
+		<!-- Không cần đặt lại TargetPlatformVersion vì đã nằm trong TFM -->
 		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
