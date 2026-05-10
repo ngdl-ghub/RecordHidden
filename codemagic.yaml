@@ -1,12 +1,10 @@
-﻿workflows:
-  ios-release:
-    name: iOS Release
+workflows:
+  ios-simulator:
+    name: iOS Simulator Build
     max_build_duration: 60
     instance_type: mac_mini_m2
 
     environment:
-      groups:
-        - appstore_credentials   # nhóm chứa APP_STORE_CONNECT_ISSUER_ID, KEY_ID, PRIVATE_KEY
       vars:
         BUNDLE_ID: "com.yourcompany.yourapp"
         XCODE_WORKSPACE: "YourApp.xcworkspace"
@@ -15,37 +13,18 @@
       cocoapods: default
 
     scripts:
-      - name: Fetch signing files
-        script: |
-          app-store-connect fetch-signing-files "$BUNDLE_ID" \
-            --type IOS_APP_STORE \
-            --create
-
-      - name: Set up keychain
-        script: |
-          keychain initialize
-          keychain add-certificates
-
-      - name: Configure Xcode signing
-        script: |
-          xcode-project use-profiles
-
       - name: Get Flutter packages (nếu dùng Flutter)
         script: |
           flutter pub get
 
-      - name: Build ipa
+      - name: Build for simulator
         script: |
-          xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
-            --scheme "$XCODE_SCHEME"
+          xcodebuild \
+            -workspace "$XCODE_WORKSPACE" \
+            -scheme "$XCODE_SCHEME" \
+            -sdk iphonesimulator \
+            -configuration Debug \
+            build
 
     artifacts:
-      - build/ios/ipa/*.ipa
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-
-    publishing:
-      app_store_connect:
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+      - build/Debug-iphonesimulator/*.app
