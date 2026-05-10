@@ -25,6 +25,15 @@ jobs:
         with:
           xcode-version: 16.4
 
+      # Cache NuGet packages
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Install MAUI workloads
         run: dotnet workload install maui maui-ios
 

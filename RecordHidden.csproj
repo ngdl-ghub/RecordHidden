@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<!-- Nếu build trên Windows thì chỉ build cho Windows -->
+	<!-- Windows -->
 	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-		<TargetFrameworks>net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
@@ -20,9 +20,9 @@
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
-	<!-- Nếu build trên macOS/Linux (GitHub Actions runner) thì chỉ build cho iOS -->
+	<!-- iOS -->
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TargetFrameworks>net8.0-ios</TargetFrameworks>
+		<TargetFramework>net8.0-ios</TargetFramework>
 		<NoWarn>NETSDK1202</NoWarn>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
