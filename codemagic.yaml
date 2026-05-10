@@ -1,31 +1,27 @@
 workflows:
-  ios-simulator:
-    name: iOS Simulator Build
+  ios-maui:
+    name: iOS MAUI Build
     max_build_duration: 60
     instance_type: mac_mini_m2
 
     environment:
       vars:
-        BUNDLE_ID: "com.yourcompany.yourapp"
-        XCODE_WORKSPACE: "YourApp.xcworkspace"
-        XCODE_SCHEME: "YourApp"
+        SOLUTION_FILE: "RecordHidden.slnx"   # dùng file .slnx của bạn
+        PROJECT_NAME: "RecordHidden"         # tên project MAUI
       xcode: latest
       cocoapods: default
-      flutter: stable   # đảm bảo Codemagic cài Flutter
+      dotnet: 10.0.100   # phiên bản .NET 10.0 SDK
 
     scripts:
-      - name: Get Flutter packages
+      - name: Restore NuGet packages
         script: |
-          flutter pub get
+          dotnet restore "$SOLUTION_FILE"
 
-      - name: Build for simulator
+      - name: Build MAUI iOS app
         script: |
-          xcodebuild \
-            -workspace "$XCODE_WORKSPACE" \
-            -scheme "$XCODE_SCHEME" \
-            -sdk iphonesimulator \
-            -configuration Debug \
-            build
+          dotnet build "$SOLUTION_FILE" \
+            -c Debug \
+            -f net10.0-ios
 
     artifacts:
-      - build/Debug-iphonesimulator/*.app
+      - **/bin/Debug/net10.0-ios/**/*.app
