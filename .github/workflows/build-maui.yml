@@ -35,6 +35,16 @@ jobs:
       - name: Restore NuGet packages
         run: dotnet restore RecordHidden.csproj
 
+      # Dump toàn bộ property sau khi MSBuild xử lý
+      - name: Dump MSBuild properties
+        run: dotnet msbuild RecordHidden.csproj -t:Build -p:TargetFramework=net8.0-ios16.0 -pp:props.txt
+
+      - name: Upload MSBuild props
+        uses: actions/upload-artifact@v4
+        with:
+          name: msbuild-props
+          path: props.txt
+
       - name: Build MAUI iOS app
         run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -p:TreatWarningsAsErrors=false
 
