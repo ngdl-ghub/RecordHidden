@@ -2,8 +2,7 @@ name: Build MAUI iOS
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-ios:
