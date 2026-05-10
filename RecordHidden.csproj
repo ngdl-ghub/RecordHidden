@@ -72,6 +72,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include=".github\workflows\build-maui.yml" />
 	  <None Include=".github\workflows\test.yml" />
 	</ItemGroup>
 
