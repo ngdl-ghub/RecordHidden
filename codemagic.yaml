@@ -6,9 +6,9 @@ workflows:
 
     environment:
       vars:
-        BUNDLE_ID: "com.yourcompany.yourapp"
-        XCODE_WORKSPACE: "YourApp.xcworkspace"
-        XCODE_SCHEME: "YourApp"
+        BUNDLE_ID: "com.vnc.recorderhidden"
+        XCODE_WORKSPACE: "RecorderHidden.xcworkspace"
+        XCODE_SCHEME: "RecorderHidden"
       xcode: latest
       cocoapods: default
 
