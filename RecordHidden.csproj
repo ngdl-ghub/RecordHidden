@@ -22,7 +22,7 @@
 
 	<!-- macOS/iOS build -->
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TargetFramework>net8.0-ios15.0</TargetFramework>
+		<TargetFramework>net8.0-ios16.0</TargetFramework>
 		<NoWarn>NETSDK1202</NoWarn>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
@@ -37,7 +37,7 @@
 		<ApplicationVersion>1</ApplicationVersion>
 		<WindowsPackageType>None</WindowsPackageType>
 		<!-- Không cần đặt lại TargetPlatformVersion vì đã nằm trong TFM -->
-		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
