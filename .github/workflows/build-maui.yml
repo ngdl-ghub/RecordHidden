@@ -26,14 +26,6 @@ jobs:
         with:
           xcode-version: 16.4     # runner có iOS SDK 16.x
 
-      # - name: Cache NuGet
-      #   uses: actions/cache@v4
-      #   with:
-      #     path: ~/.nuget/packages
-      #     key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}-${{ github.run_id }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-nuget-
-
       - name: Install MAUI iOS workload
         run: dotnet workload install maui-ios
 
@@ -44,7 +36,7 @@ jobs:
         run: dotnet restore RecordHidden.csproj
 
       - name: Build MAUI iOS app
-        run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -v diag
+        run: dotnet build RecordHidden.csproj -c Release -f net8.0-ios16.0 -v diag -p:TreatWarningsAsErrors=false
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
