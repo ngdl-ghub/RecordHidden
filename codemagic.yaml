@@ -16,8 +16,13 @@ workflows:
         script: |
           brew install dotnet-sdk
 
+      - name: Install MAUI workloads
+        script: |
+          dotnet workload install maui maui-ios maui-android
+
       - name: Restore NuGet packages
         script: |
+          dotnet workload restore
           dotnet restore "$SOLUTION_FILE"
 
       - name: Build MAUI iOS app
