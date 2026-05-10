@@ -26,13 +26,13 @@ jobs:
         with:
           xcode-version: 16.4     # runner có iOS SDK 16.x
 
-      - name: Cache NuGet
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
+      # - name: Cache NuGet
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.nuget/packages
+      #     key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}-${{ github.run_id }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-nuget-
 
       - name: Install MAUI iOS workload
         run: dotnet workload install maui-ios
