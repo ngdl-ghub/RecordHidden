@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<!-- Nếu build trên Windows thì dùng net9.0-ios -->
+	<!-- Nếu build trên Windows thì chỉ build cho Windows -->
 	<PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
-		<TargetFrameworks>net9.0-ios;net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net9.0-windows10.0.19041.0</TargetFrameworks>
 		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
@@ -16,15 +16,14 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 		<WindowsPackageType>None</WindowsPackageType>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
-	<!-- Nếu build trên macOS/Linux (GitHub Actions runner) thì dùng net8.0-ios -->
+
+	<!-- Nếu build trên macOS/Linux (GitHub Actions runner) thì chỉ build cho iOS -->
 	<PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
-		<TargetFrameworks>net8.0-ios;net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net8.0-ios</TargetFrameworks>
 		<NoWarn>NETSDK1202</NoWarn>
-		<EnableWindowsTargeting>true</EnableWindowsTargeting>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>RecordHidden</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -41,10 +40,6 @@
 		<!-- iOS -->
 		<TargetPlatformVersion>15.0</TargetPlatformVersion>
 		<SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
-
-		<!-- Windows -->
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
